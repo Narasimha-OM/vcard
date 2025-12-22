@@ -12,11 +12,9 @@
     --text-dark: #333333;
     --logo-size: 100px;
 }
-
-/* ===== Body ===== */
 body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; color:var(--text-dark); line-height:1.6; }
 
-/* ===== VCard ===== */
+/* VCard Container */
 .vcard-container { max-width:460px; margin:30px auto; background:#fff; border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,0.12); overflow:hidden; opacity:0; transition:opacity 1s ease-in; }
 .vcard-container.loaded { opacity:1; }
 .vcard-header { background:var(--primary-color); color:var(--text-light); padding:80px 20px 60px; text-align:center; position:relative; }
@@ -24,27 +22,19 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
 .name { margin-top:60px; font-size:1.9em; font-weight:700; }
 .title { font-size:1.1em; font-weight:500; opacity:0.87; margin-top:6px; color: rgba(255,255,255,0.9); letter-spacing: 1px; text-transform: uppercase; position: relative; display: inline-block; }
 .title::after { content:''; display:block; width:40px; height:2px; background:#ffffff; margin:6px auto 0; border-radius:2px; }
-
-/* Header Buttons */
 .header-buttons { display:flex; gap:8px; margin-top:18px; padding:0 12px; }
 .header-btn { flex:1; padding:10px 0; text-align:center; color:var(--text-light); text-decoration:none; font-size:0.95em; font-weight:600; border-radius:6px; background:rgba(255,255,255,0.15); transition: background 0.25s, transform 0.2s, box-shadow 0.2s; box-shadow:0 4px 6px rgba(0,0,0,0.15); }
 .header-btn:hover { background: rgba(255,255,255,0.28); transform: translateY(-3px); box-shadow:0 8px 14px rgba(0,0,0,0.25); }
 .header-btn i { margin-right:6px; font-size:1.2em; }
-
-/* Details */
 .vcard-details { padding:24px 22px; background:#fff; color:var(--text-dark); }
 .vcard-row { display:flex; align-items:center; padding:14px 0; border-bottom:1px solid #EAEAEA; }
 .vcard-row:last-child { border-bottom:none; }
 .vcard-icon { font-size:1.5em; color:#6c757d; margin-right:14px; min-width:28px; text-align:center; padding-bottom:2px; }
 .vcard-content .value { font-size:1.12em; font-weight:500; color:var(--text-dark); }
 .vcard-content .label { font-size:0.88em; color:#777; margin-top:2px; margin-bottom:4px; }
-
-/* Download button */
 .vcard-action-container { padding:18px 20px 10px; background:#fefefe; }
 .vcard-btn { display:block; text-align:center; padding:13px 0; border-radius:8px; font-size:1em; font-weight:600; background-color:#4285F4; color:white; text-decoration:none; transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.2s; box-shadow:0 4px 8px rgba(0,0,0,0.2); cursor:pointer; }
 .vcard-btn:hover { background-color:#367ce4; transform:translateY(-3px); box-shadow:0 8px 14px rgba(0,0,0,0.3); }
-
-/* Welcome Loader */
 .welcome-screen { position:fixed; inset:0; background:#fff; display:flex; justify-content:center; align-items:center; z-index:9999; opacity:1; visibility:visible; transition:opacity 1s ease, visibility 1s ease; }
 .welcome-screen.hidden { opacity:0; visibility:hidden; pointer-events:none; }
 .profile-img-loader { width:500px; height:500px; background-image:url('https://img1.wsimg.com/isteam/ip/4146d706-7644-40f8-8cc0-05b1be02f55a/blob.png'); background-size:contain; background-repeat:no-repeat; background-position:center; animation:zoomPulse 2s infinite ease-in-out; }
@@ -62,75 +52,20 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
 .lead-form button{ width:100%; padding:14px; margin-top:15px; border:none; border-radius:12px; font-size:1.1em; font-weight:600; background:#0b457e; color:#fff; cursor:pointer; box-shadow:0 6px 14px rgba(0,0,0,0.25),0 0 12px rgba(11,69,126,0.4); transition:transform 0.2s, box-shadow 0.25s, background 0.3s; }
 .lead-form button:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 10px 20px rgba(0,0,0,0.3),0 0 18px rgba(11,69,126,0.6); background:#09325b; }
 
-/* FAB & Radial Share */
+/* FAB & Share Panel */
 .fab-container { position: fixed; bottom: 22px; right: 22px; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; z-index:100; }
 .fab-btn { width: 56px; height: 56px; border-radius: 50%; border: none; font-size: 1.3em; cursor: pointer; display:flex; align-items:center; justify-content:center; }
 .fab-share { background-color: #f8f9fa; color: var(--text-dark); box-shadow: 0 3px 7px rgba(0, 0, 0, 0.12); }
 .fab-share:hover { background-color: #ececec; }
 .fab-contact { background-color: #66b3ff; color: white; }
 .fab-contact:hover { background-color: #4da6ff; }
-
-/* ===========================
-   SHARE PANEL (Hidden / Expandable)
-============================ */
-.vcard-share-container {
-    padding: 12px 20px 20px;
-    background-color: #fafafa;
-    transition: all 0.5s ease;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-}
-
-.vcard-share-container.expanded {
-    max-height: 260px;
-    opacity: 1;
-}
-
-.share-header {
-    text-align: center;
-    font-size: 1em;
-    font-weight: 600;
-    color: #555;
-    padding: 10px 0;
-    border-bottom: 1px solid #EAEAEA;
-    margin-bottom: 12px;
-}
-
-.share-options {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.share-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text-dark);
-    font-size: 0.85em;
-    margin: 8px 4px;
-}
-
-.share-icon-circle {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 1.25em;
-    margin-bottom: 5px;
-    transition: transform 0.15s, box-shadow 0.2s;
-}
-
-.share-icon-circle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
+.vcard-share-container { padding: 12px 20px 20px; background-color: #fafafa; transition: all 0.5s ease; max-height: 0; overflow: hidden; opacity: 0; }
+.vcard-share-container.expanded { max-height: 260px; opacity: 1; }
+.share-header { text-align: center; font-size: 1em; font-weight: 600; color: #555; padding: 10px 0; border-bottom: 1px solid #EAEAEA; margin-bottom: 12px; }
+.share-options { display: flex; justify-content: space-around; flex-wrap: wrap; }
+.share-button { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-dark); font-size: 0.85em; margin: 8px 4px; }
+.share-icon-circle { width: 46px; height: 46px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.25em; margin-bottom: 5px; transition: transform 0.15s, box-shadow 0.2s; }
+.share-icon-circle:hover { transform: scale(1.1); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
 .facebook .share-icon-circle { background-color: #3b5998; }
 .x-twitter .share-icon-circle { background-color: #000000; }
 .whatsapp .share-icon-circle { background-color: #25d366; }
@@ -166,7 +101,7 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
     <h1 class="name">Narasimha Reddy</h1>
     <p class="title">Moksha Secured Systems</p>
     <div class="header-buttons">
-      <a href="tel:+916300729253" class="header-btn"><i class="fas fa-phone"></i>CALL</a>
+      <a href="#" class="header-btn call-btn"><i class="fas fa-phone"></i>CALL</a>
       <a href="#" class="header-btn whatsapp-btn"><i class="fab fa-whatsapp"></i>WHATSAPP</a>
       <a href="#" class="header-btn email-btn"><i class="fas fa-envelope"></i>EMAIL</a>
     </div>
@@ -224,7 +159,7 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
 </div>
 
 <script>
-// Welcome screen
+// Elements
 const welcome = document.getElementById('welcomeScreen');
 const vcard = document.getElementById('vcardContainer');
 const leadModal = document.getElementById('leadModal');
@@ -233,9 +168,10 @@ const leadSubmit = document.getElementById('leadSubmit');
 let leadSaved = false;
 let leadData = { name: '', mobile: '' };
 
+// Welcome screen and lead modal
 window.addEventListener('load', ()=>{
     setTimeout(()=>{ welcome.classList.add('hidden'); vcard.classList.add('loaded'); }, 1000);
-    setTimeout(()=>{ leadModal.classList.add('active'); }, 6000);
+    setTimeout(()=>{ leadModal.classList.add('active'); }, 3000);
 });
 
 // Lead Modal Submit
@@ -271,6 +207,25 @@ leadSubmit.addEventListener('click', ()=>{
     });
 });
 
+// Header buttons actions
+document.querySelector('.call-btn').addEventListener('click', function(e){
+    if(!leadSaved){ e.preventDefault(); alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
+    window.location.href = `tel:+916300729253`;
+});
+
+document.querySelector('.whatsapp-btn').addEventListener('click', function(e){
+    if(!leadSaved){ e.preventDefault(); alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
+    const msg = encodeURIComponent(`Hi, my name is ${leadData.name}. My contact number is ${leadData.mobile}. I would like to know more about MSS services.`);
+    window.open(`https://wa.me/916300729253?text=${msg}`, '_blank');
+});
+
+document.querySelector('.email-btn').addEventListener('click', function(e){
+    if(!leadSaved){ e.preventDefault(); alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
+    const subject = encodeURIComponent("Service Inquiry");
+    const body = encodeURIComponent(`Hi, my name is ${leadData.name}. My contact number is ${leadData.mobile}. I would like to know more about your services.`);
+    window.location.href = `mailto:Narasimha@MokshaSecuredSystems.com?subject=${subject}&body=${body}`;
+});
+
 // Download vCard
 function downloadVCF() {
     const vcf = `
@@ -278,61 +233,27 @@ BEGIN:VCARD
 VERSION:3.0
 FN:Narasimha Reddy
 ORG:Moksha Secured Systems
-TEL;TYPE=CELL:+916300729253
+TEL;TYPE=cell:+91 6300729253
 EMAIL:Narasimha@MokshaSecuredSystems.com
-URL:https://MokshaSecuredSystems.com
 END:VCARD`;
-    const a = document.createElement('a');
-    a.href = "data:text/vcard;base64," + btoa(vcf);
-    a.download = "Narasimha_Reddy.vcf";
-    a.click();
+    const blob = new Blob([vcf], { type: 'text/vcard' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'NarasimhaReddy.vcf';
+    link.click();
 }
 
-// Toggle share panel
-function toggleShareOptions() {
-    document.getElementById('shareContainer').classList.toggle('expanded');
+// Share
+function toggleShareOptions(){ document.getElementById('shareContainer').classList.toggle('expanded'); }
+function shareSocial(platform){
+    const url = encodeURIComponent(window.location.href);
+    let shareUrl = "";
+    if(platform==='facebook') shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+    if(platform==='x') shareUrl = `https://twitter.com/intent/tweet?url=${url}`;
+    if(platform==='whatsapp') shareUrl = `https://wa.me/?text=${url}`;
+    window.open(shareUrl, '_blank');
 }
-
-// Copy link
-function copyLink() {
-    navigator.clipboard.writeText(window.location.href)
-        .then(() => alert('Link copied!'))
-        .catch(() => alert('Copy failed!'));
-}
-
-// Social share
-function shareSocial(platform) {
-    if(!leadSaved){ alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
-    const msg = encodeURIComponent(`Hi, my name is ${leadData.name}. Check out this digital card: ${window.location.href}`);
-    let shareURL = '';
-    if (platform === 'facebook') shareURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
-    if (platform === 'x') shareURL = `https://twitter.com/intent/tweet?text=${msg}`;
-    if (platform === 'whatsapp') shareURL = `https://wa.me/?text=${msg}`;
-    window.open(shareURL, '_blank');
-}
-
-// WhatsApp button
-document.querySelector('.whatsapp-btn').addEventListener('click', function(e){
-    if(!leadSaved){ e.preventDefault(); alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
-    const msg = encodeURIComponent(`Hi, my name is ${leadData.name}. I would like to know more about MSS services.`);
-    window.open(`https://wa.me/916300729253?text=${msg}`, '_blank');
-});
-
-// Email button
-document.querySelector('.email-btn').addEventListener('click', function(e){
-    if(!leadSaved){ e.preventDefault(); alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
-    const subject = encodeURIComponent("Service Inquiry");
-    const body = encodeURIComponent(`Hi, my name is ${leadData.name}. I would like to know more about your services.`);
-    window.location.href = `mailto:Narasimha@MokshaSecuredSystems.com?subject=${subject}&body=${body}`;
-});
-
-// FAB Contact button triggers download/contact
-document.querySelector('.fab-contact').addEventListener('click', function(e){
-    if(!leadSaved){ alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
-    downloadVCF();
-});
+function copyLink(){ navigator.clipboard.writeText(window.location.href); alert("Link copied to clipboard!"); }
 </script>
-
 </body>
 </html>
-
