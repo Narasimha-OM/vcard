@@ -258,13 +258,7 @@ leadSubmit.addEventListener('click', () => {
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({ name: name, mobile: mobile })
     })
-    .then(() => {
-        // Because of 'no-cors', we assume success if the fetch completes
-        alert(`Thanks ${name}, your details have been saved!`);
-        leadModal.classList.remove('active');
-        leadSaved = true;
-        leadData = { name, mobile };
-    })
+    
     .catch(err => {
         console.error(err);
         alert("Submission failed. Check your internet or script URL.");
@@ -334,5 +328,6 @@ document.querySelector('.fab-contact').addEventListener('click', function(e){
 
 </body>
 </html>
+
 
 
