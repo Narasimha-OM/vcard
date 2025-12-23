@@ -158,7 +158,14 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
     </div>
   </div>
 </div>
-
+    <div id="successMessage" style="display:none; padding: 20px;">
+        <i class="fas fa-check-circle" style="font-size: 3em; color: #25d366; margin-bottom: 15px;"></i>
+        <h2 style="color: #0b457e;">Thank You!</h2>
+        <p id="successText" style="color: #555; font-size: 1.1em;"></p>
+    </div>
+  </div>
+</div>
+    
 <!-- Main vCard -->
 <div id="vcardContainer" class="vcard-container">
   <div class="vcard-header">
@@ -238,38 +245,61 @@ window.addEventListener('load', ()=>{
     setTimeout(()=>{ leadModal.classList.add('active'); }, 6000);
 });
 
-// Lead Modal Submit
+    // Lead Modal Submit Logic
 leadSubmit.addEventListener('click', () => {
-    const name = document.getElementById('leadName').value.trim();
-    const mobile = document.getElementById('leadMobile').value.trim();
-    
-    if(!name || !mobile) {
-        alert('Please enter both fields');
+    const nameEl = document.getElementById('leadName');
+    const mobileEl = document.getElementById('leadMobile');
+    const submitBtn = document.getElementById('leadSubmit');
+    const modalContent = document.getElementById('modalContent');
+    const successMessage = document.getElementById('successMessage');
+    const successText = document.getElementById('successText');
+
+    const name = nameEl.value.trim();
+    const mobile = mobileEl.value.trim();
+
+    if (!name || !mobile) {
+        alert('Please enter both fields'); // You can replace this with a red border on inputs
         return;
     }
-
+    // 1. Visual Feedback: Disable button and show loading
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Saving...";
+    submitBtn.style.background = "#6c757d";
+    
       // Replace this with your NEW URL from Step 2
     const url = "https://script.google.com/macros/s/AKfycbxmVe1Vjl-0263gCQH8EdXy6_Ld2Un7aJW6dW8Q6JVRoCnAEGDKrEOGDgtTatrOq6XyHw/exec";
 
     fetch(url, {
         method: "POST",
-        mode: "no-cors", // This bypasses CORS errors, but you won't see the 'success' JSON
+        mode: "no-cors", 
         cache: "no-cache",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ name: name, mobile: mobile })
+        body: JSON.stringify({ name, mobile })
     })
-   .then(() => {
-        // Because of 'no-cors', we assume success if the fetch completes
-        alert(`Thanks ${name}, `);
-        leadModal.classList.remove('active');
+    .then(() => {
+        // 2. Custom Success Experience
         leadSaved = true;
         leadData = { name, mobile };
+
+        // Hide form, show custom "Moksha Secured Systems" success message
+        modalContent.style.display = "none";
+        successMessage.style.display = "block";
+        successText.innerText = `Thanks ${name}, your info is saved with Narasimha Reddy.`;
+
+        // 3. Auto-close modal after 2 seconds
+        setTimeout(() => {
+            leadModal.classList.remove('active');
+        }, 2500);
     })
     .catch(err => {
         console.error(err);
-        alert("Submission failed. Check your internet or script URL.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Continue";
+        submitBtn.style.background = "#0b457e";
+        alert("Error connecting to server. Please try again.");
     });
 });
+
 // Download vCard
 function downloadVCF() {
     const vcf = `
@@ -334,6 +364,7 @@ document.querySelector('.fab-contact').addEventListener('click', function(e){
 
 </body>
 </html>
+
 
 
 
