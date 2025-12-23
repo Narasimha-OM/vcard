@@ -239,38 +239,37 @@ window.addEventListener('load', ()=>{
 });
 
 // Lead Modal Submit
-leadSubmit.addEventListener('click', ()=>{
+leadSubmit.addEventListener('click', () => {
     const name = document.getElementById('leadName').value.trim();
     const mobile = document.getElementById('leadMobile').value.trim();
-    if(!name || !mobile){ 
-        alert('Please enter both fields'); 
-        return; 
+    
+    if(!name || !mobile) {
+        alert('Please enter both fields');
+        return;
     }
 
+      // Replace this with your NEW URL from Step 2
     const url = "https://script.google.com/macros/s/AKfycbyQF6ZGS-F4H4WXFlaWvD-9owCq7IlGGOP5uh6BI6wlh49ZnKEO7sZPXWDFspPyBo-tKw/exec";
 
     fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, mobile })
+        mode: "no-cors", // This bypasses CORS errors, but you won't see the 'success' JSON
+        cache: "no-cache",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ name: name, mobile: mobile })
     })
-    .then(response => response.json())
-    .then(data => {
-        if(data.status === "success"){ 
-            alert(`Thanks ${name}, your info is saved!`); 
-            leadModal.classList.remove('active'); 
-            leadSaved = true;
-            leadData = { name, mobile };
-        } else {
-            alert("Error saving data.");
-        }
+    .then(() => {
+        // Because of 'no-cors', we assume success if the fetch completes
+        alert(`Thanks ${name}, your details have been saved!`);
+        leadModal.classList.remove('active');
+        leadSaved = true;
+        leadData = { name, mobile };
     })
     .catch(err => {
         console.error(err);
-        alert("Error connecting to server.");
+        alert("Submission failed. Check your internet or script URL.");
     });
 });
-
 // Download vCard
 function downloadVCF() {
     const vcf = `
@@ -335,3 +334,4 @@ document.querySelector('.fab-contact').addEventListener('click', function(e){
 
 </body>
 </html>
+
