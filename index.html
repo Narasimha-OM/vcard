@@ -171,7 +171,9 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
     </div>
     <div id="successMessage" style="display:none; padding: 20px;">
         <i class="fas fa-check-circle" style="font-size: 3em; color: #25d366; margin-bottom: 15px;"></i>
-        <h2 style="color: #0b457e;">Thank You!</h2>
+        <h2 style="color: #0b457e; margin: 10px 0; display: flex; align-items: center; justify-content: center; gap: 10px;">
+    Thank You! <i class="fas fa-handshake" style="color: #0b457e; font-size: 0.9em;"></i>
+       </h2>
         <p id="successText" style="color: #555; font-size: 1.1em;"></p>
     </div>
   </div>
@@ -280,10 +282,10 @@ leadSubmit.addEventListener('click', () => {
 leadData
     modalContent.style.display = "none";
     successMessage.style.display = "block";
-    successText.innerText = `, ${name}!`;
+    successText.innerText = `${name}`;
 
     // 2. Send data in background
-    const url = "https://script.google.com/macros/s/AKfycbxmVe1Vjl-0263gCQH8EdXy6_Ld2Un7aJW6dW8Q6JVRoCnAEGDKrEOGDgtTatrOq6XyHw/exec";
+    const url = "https://script.google.com/macros/s/AKfycbz_Yk3ChYnRsepWQmhwmjLEEiW5wg9lF4WifK6XlZs_0RooejC9dpVX1Lq-6QXZPbpOZw/exec";
 
     fetch(url, {
         method: "POST",
@@ -356,3 +358,4 @@ document.querySelector('.fab-contact').addEventListener('click', function(e){
 </script>
 </body>
 </html>
+
