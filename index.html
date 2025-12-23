@@ -175,16 +175,13 @@ window.addEventListener('load', ()=>{
 });
 
 // Lead Modal Submit
-leadSubmit.addEventListener('click', ()=>{
-    const name = document.getElementById('leadName').value.trim();
-    const mobile = document.getElementById('leadMobile').value.trim();
-    if(!name || !mobile){ 
-        alert('Please enter both fields'); 
-        return; 
-    }
+const leadModal = document.getElementById('leadModal');
+const leadSubmit = document.getElementById('leadSubmit');
 
+let leadSaved = false;
+let leadData = { name: '', mobile: '' };
 
-  const url = "https://script.google.com/macros/s/AKfycbwkhP0dRv6-Z4Rl4iGupL7jNAQv7NRsXqTTxGohLK2UDYlq9YTRGP_ZS1i6Ekb5FNX-FQ/exec"; // replace with your working script URL
+  const url = "https://script.google.com/macros/s/AKfycbzcyInZUJUj-07spZEMGytPISLL8Ix-sGcGSBI999WT_jr4X1xsfQRM4qZe2bucRZrn6A/exec"; // replace with your working script URL
 
 leadSubmit.addEventListener('click', ()=>{
     const name = document.getElementById('leadName').value.trim();
@@ -194,28 +191,6 @@ leadSubmit.addEventListener('click', ()=>{
         return; 
     }
 
-    fetch(url, {
-        method: "POST",
-        mode: "cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, mobile })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if(data.status === "success"){ 
-            alert(`Thanks ${name}, your info is saved!`); 
-            leadModal.classList.remove('active'); 
-            leadSaved = true;
-            leadData = { name, mobile };
-        } else {
-            alert("Error saving data.");
-        }
-    })
-    .catch(err => {
-        console.error(err);
-        alert("Error connecting to server.");
-    });
-});
   fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -291,6 +266,7 @@ function copyLink(){ navigator.clipboard.writeText(window.location.href); alert(
 </script>
 </body>
 </html>
+
 
 
 
