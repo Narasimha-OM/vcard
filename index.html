@@ -53,14 +53,56 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
 /* Lead Modal */
 #leadModal{ position:fixed; inset:0; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:9999; opacity:0; pointer-events:none; transition:opacity .5s ease; }
 #leadModal.active{ opacity:1; pointer-events:auto; }
-.lead-card{ background:linear-gradient(145deg,#ffffff,#e6f0ff); border-radius:25px 10%; padding:30px; width:90%; max-width:380px; text-align:center; box-shadow:0 15px 40px rgba(0,0,0,0.35); transform:translateY(-30px) rotateX(5deg) perspective(600px); transition:transform 0.5s cubic-bezier(.68,-.55,.27,1.55); }
-#leadModal.active .lead-card{ transform:translateY(0) rotateX(0deg); border-radius:25% 10%; }
+.lead-card{ background:linear-gradient(145deg,#ffffff,#e6f0ff); border-radius: 20px 10px; padding:30px; padding-left:2%; padding-right: 4%; width:90%; max-width:380px; text-align:center; box-shadow:0 15px 40px rgba(0,0,0,0.35); transform:translateY(-30px) rotateX(5deg) perspective(600px); transition:transform 0.5s cubic-bezier(.68,-.55,.27,1.55); }
+#leadModal.active .lead-card{ transform:translateY(0) rotateX(0deg); border-radius: 25% 10% ; }
 .lead-header h2{ margin:0; font-size:1.8em; color:#0b457e; text-shadow:0 2px 8px rgba(0,0,0,0.2); }
-.lead-header p{ margin:6px 0 20px; font-size:1em; color:#555; }
-.lead-form input{ width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid #ccc; font-size:1em; outline:none; transition:0.3s; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); }
+.lead-header p{ margin:6px 0 20px; font-size:1em; color:#0c0c0c; }
+.lead-form input{ width:100%; padding:10px; box-sizing: border; margin:10px 0; border-radius:8px; border:1px solid #ccc; font-size:1em; outline:none; transition:0.3s; box-shadow: inset 0 2px 5px rgba(8, 45, 92, 0.05); }
 .lead-form input:focus{ border-color:#0b457e; box-shadow:0 0 10px rgba(11,69,126,0.4); }
 .lead-form button{ width:100%; padding:14px; margin-top:15px; border:none; border-radius:12px; font-size:1.1em; font-weight:600; background:#0b457e; color:#fff; cursor:pointer; box-shadow:0 6px 14px rgba(0,0,0,0.25),0 0 12px rgba(11,69,126,0.4); transition:transform 0.2s, box-shadow 0.25s, background 0.3s; }
 .lead-form button:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 10px 20px rgba(0,0,0,0.3),0 0 18px rgba(11,69,126,0.6); background:#09325b; }
+
+/* Mobile Optimization for Lead Modal */
+@media (max-width: 480px) {
+    .lead-card {
+        padding: 20px; /* Reduced from 30px */
+        width: 85%;    /* Slightly narrower */
+        border-radius: 15px; /* Simpler, cleaner corners for small screens */
+    }
+
+    #leadModal.active .lead-card {
+        border-radius: 15px; /* Keep consistent on active state */
+    }
+
+    .lead-header h2 {
+        font-size: 1.4em; /* Smaller heading */
+    }
+
+    .lead-header p {
+        font-size: 0.9em; /* Smaller sub-text */
+        margin-bottom: 15px;
+    }
+
+    .lead-form input {
+        padding: 10px; /* Slimmer input fields */
+        margin: 6px 0;
+        font-size: 0.95em;
+    }
+
+    .lead-form button {
+        padding: 12px; /* Slimmer button */
+        margin-top: 10px;
+        font-size: 1em;
+    }
+    
+    #successMessage {
+        padding: 10px !important;
+    }
+    
+    #successMessage i {
+        font-size: 2.5em !important; /* Smaller checkmark */
+    }
+}
 
 /* FAB & Radial Share */
 .fab-container { position: fixed; bottom: 22px; right: 22px; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; z-index:100; }
@@ -70,67 +112,14 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
 .fab-contact { background-color: #66b3ff; color: white; }
 .fab-contact:hover { background-color: #4da6ff; }
 
-/* ===========================
-   SHARE PANEL (Hidden / Expandable)
-============================ */
-.vcard-share-container {
-    padding: 12px 20px 20px;
-    background-color: #fafafa;
-    transition: all 0.5s ease;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-}
-
-.vcard-share-container.expanded {
-    max-height: 260px;
-    opacity: 1;
-}
-
-.share-header {
-    text-align: center;
-    font-size: 1em;
-    font-weight: 600;
-    color: #555;
-    padding: 10px 0;
-    border-bottom: 1px solid #EAEAEA;
-    margin-bottom: 12px;
-}
-
-.share-options {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.share-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text-dark);
-    font-size: 0.85em;
-    margin: 8px 4px;
-}
-
-.share-icon-circle {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 1.25em;
-    margin-bottom: 5px;
-    transition: transform 0.15s, box-shadow 0.2s;
-}
-
-.share-icon-circle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
+/* SHARE PANEL */
+.vcard-share-container { padding: 12px 20px 20px; background-color: #fafafa; transition: all 0.5s ease; max-height: 0; overflow: hidden; opacity: 0; }
+.vcard-share-container.expanded { max-height: 260px; opacity: 1; }
+.share-header { text-align: center; font-size: 1em; font-weight: 600; color: #555; padding: 10px 0; border-bottom: 1px solid #EAEAEA; margin-bottom: 12px; }
+.share-options { display: flex; justify-content: space-around; flex-wrap: wrap; }
+.share-button { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-dark); font-size: 0.85em; margin: 8px 4px; }
+.share-icon-circle { width: 46px; height: 46px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.25em; margin-bottom: 5px; transition: transform 0.15s, box-shadow 0.2s; }
+.share-icon-circle:hover { transform: scale(1.1); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
 .facebook .share-icon-circle { background-color: #3b5998; }
 .x-twitter .share-icon-circle { background-color: #000000; }
 .whatsapp .share-icon-circle { background-color: #25d366; }
@@ -139,25 +128,23 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
 </head>
 <body>
 
-<!-- Welcome Loader -->
 <div id="welcomeScreen" class="welcome-screen">
     <div class="profile-img-loader"></div>
 </div>
 
-<!-- Lead Modal -->
 <div id="leadModal">
   <div class="lead-card">
-    <div class="lead-header">
-      <h2>Moksha Secured Systems</h2>
-      <p>Enter your details to get started</p>
+    <div id="modalContent">
+        <div class="lead-header">
+          <h2>Moksha Secured Systems</h2>
+          <p>Enter your details to get started</p>
+        </div>
+        <div class="lead-form">
+          <input id="leadName" placeholder="Your Name">
+          <input id="leadMobile" placeholder="Mobile Number">
+          <button id="leadSubmit">Continue</button>
+        </div>
     </div>
-    <div class="lead-form">
-      <input id="leadName" placeholder="Your Name">
-      <input id="leadMobile" placeholder="Mobile Number">
-      <button id="leadSubmit">Continue</button>
-    </div>
-  </div>
-</div>
     <div id="successMessage" style="display:none; padding: 20px;">
         <i class="fas fa-check-circle" style="font-size: 3em; color: #25d366; margin-bottom: 15px;"></i>
         <h2 style="color: #0b457e;">Thank You!</h2>
@@ -166,7 +153,6 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
   </div>
 </div>
     
-<!-- Main vCard -->
 <div id="vcardContainer" class="vcard-container">
   <div class="vcard-header">
     <div class="profile-img"></div>
@@ -201,7 +187,6 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
   </div>
 </div>
 
-<!-- Share Container -->
 <div id="shareContainer" class="vcard-share-container">
   <div class="share-header"><i class="fas fa-share-alt"></i> SHARE THIS PAGE</div>
   <div class="share-options">
@@ -220,7 +205,6 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
   </div>
 </div>
 
-<!-- FAB Buttons -->
 <div class="fab-container">
     <button class="fab-btn fab-share" onclick="toggleShareOptions()">
         <i class="fas fa-share-alt"></i>
@@ -231,7 +215,7 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
 </div>
 
 <script>
-// Welcome screen
+// Elements
 const welcome = document.getElementById('welcomeScreen');
 const vcard = document.getElementById('vcardContainer');
 const leadModal = document.getElementById('leadModal');
@@ -240,12 +224,13 @@ const leadSubmit = document.getElementById('leadSubmit');
 let leadSaved = false;
 let leadData = { name: '', mobile: '' };
 
+// Loader
 window.addEventListener('load', ()=>{
     setTimeout(()=>{ welcome.classList.add('hidden'); vcard.classList.add('loaded'); }, 1000);
-    setTimeout(()=>{ leadModal.classList.add('active'); }, 6000);
+    setTimeout(()=>{ leadModal.classList.add('active'); }, 4000);
 });
 
-    // Lead Modal Submit Logic
+// Lead Modal Submit Logic
 leadSubmit.addEventListener('click', () => {
     const nameEl = document.getElementById('leadName');
     const mobileEl = document.getElementById('leadMobile');
@@ -258,16 +243,22 @@ leadSubmit.addEventListener('click', () => {
     const mobile = mobileEl.value.trim();
 
     if (!name || !mobile) {
-        alert('Please enter both fields'); // You can replace this with a red border on inputs
+        alert('Please enter both fields');
         return;
     }
-    // 1. Visual Feedback: Disable button and show loading
+
+    // 1. UI Switch IMMEDIATELY (Fire and Forget)
     submitBtn.disabled = true;
     submitBtn.innerText = "Processing...";
-    submitBtn.style.opacity = "0.7";
-    submitBtn.style.background = "#6c757d";
     
-      // Replace this with your NEW URL from Step 2
+    leadSaved = true;
+    leadData = { name, mobile };
+leadData
+    modalContent.style.display = "none";
+    successMessage.style.display = "block";
+    successText.innerText = `, ${name}!`;
+
+    // 2. Send data in background
     const url = "https://script.google.com/macros/s/AKfycbxmVe1Vjl-0263gCQH8EdXy6_Ld2Un7aJW6dW8Q6JVRoCnAEGDKrEOGDgtTatrOq6XyHw/exec";
 
     fetch(url, {
@@ -276,40 +267,18 @@ leadSubmit.addEventListener('click', () => {
         cache: "no-cache",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({ name, mobile })
-    })
-    .then(() => {
-        // 2. Custom Success Experience
-        leadSaved = true;
-        leadData = { name, mobile };
-
-      // 3. UI Transition: Switch to Success View
-        if(modalContent) modalContent.style.display = "none";
-        if(successMessage) {
-            successMessage.style.display = "block";
-            successText.innerText = `Welcome, ${name}!`;
-        }
-
-        // 4. THE FIX: Clear the "active" class to hide the modal
-        // We use a 2-second delay so they can actually see the "Thank You"
-        setTimeout(() => {
-            modal.classList.remove('active');
-            // Hard hide after the transition finishes
-            setTimeout(() => { modal.style.display = "none"; }, 500);
-        }, 2000);
-    })
-    .catch(err => {
-        console.error(err);
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Continue";
-        submitBtn.style.background = "#0b457e";
-        alert("Error connecting to server. Please try again.");
     });
+
+    // 3. Close the modal after 2 seconds
+    setTimeout(() => {
+        leadModal.classList.remove('active');
+        setTimeout(() => { leadModal.style.display = "none"; }, 500);
+    }, 2000);
 });
 
 // Download vCard
 function downloadVCF() {
-    const vcf = `
-BEGIN:VCARD
+    const vcf = `BEGIN:VCARD
 VERSION:3.0
 FN:Narasimha Reddy
 ORG:Moksha Secured Systems
@@ -323,19 +292,16 @@ END:VCARD`;
     a.click();
 }
 
-// Toggle share panel
 function toggleShareOptions() {
     document.getElementById('shareContainer').classList.toggle('expanded');
 }
 
-// Copy link
 function copyLink() {
     navigator.clipboard.writeText(window.location.href)
         .then(() => alert('Link copied!'))
         .catch(() => alert('Copy failed!'));
 }
 
-// Social share
 function shareSocial(platform) {
     if(!leadSaved){ alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
     const msg = encodeURIComponent(`Hi, my name is ${leadData.name}. Check out this digital card: ${window.location.href}`);
@@ -346,14 +312,12 @@ function shareSocial(platform) {
     window.open(shareURL, '_blank');
 }
 
-// WhatsApp button
 document.querySelector('.whatsapp-btn').addEventListener('click', function(e){
     if(!leadSaved){ e.preventDefault(); alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
     const msg = encodeURIComponent(`Hi, my name is ${leadData.name}. I would like to know more about MSS services.`);
     window.open(`https://wa.me/916300729253?text=${msg}`, '_blank');
 });
 
-// Email button
 document.querySelector('.email-btn').addEventListener('click', function(e){
     if(!leadSaved){ e.preventDefault(); alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
     const subject = encodeURIComponent("Service Inquiry");
@@ -361,18 +325,10 @@ document.querySelector('.email-btn').addEventListener('click', function(e){
     window.location.href = `mailto:Narasimha@MokshaSecuredSystems.com?subject=${subject}&body=${body}`;
 });
 
-// FAB Contact button triggers download/contact
 document.querySelector('.fab-contact').addEventListener('click', function(e){
     if(!leadSaved){ alert("Please enter your details first!"); leadModal.classList.add('active'); return; }
     downloadVCF();
 });
 </script>
-
 </body>
 </html>
-
-
-
-
-
-
