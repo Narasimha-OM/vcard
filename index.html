@@ -263,7 +263,8 @@ leadSubmit.addEventListener('click', () => {
     }
     // 1. Visual Feedback: Disable button and show loading
     submitBtn.disabled = true;
-    submitBtn.innerText = "Saving...";
+    submitBtn.innerText = "Processing...";
+    submitBtn.style.opacity = "0.7";
     submitBtn.style.background = "#6c757d";
     
       // Replace this with your NEW URL from Step 2
@@ -281,15 +282,20 @@ leadSubmit.addEventListener('click', () => {
         leadSaved = true;
         leadData = { name, mobile };
 
-        // Hide form, show custom "Moksha Secured Systems" success message
-        modalContent.style.display = "none";
-        successMessage.style.display = "block";
-        successText.innerText = `Thanks ${name}, your info is saved with Narasimha Reddy.`;
+      // 3. UI Transition: Switch to Success View
+        if(modalContent) modalContent.style.display = "none";
+        if(successMessage) {
+            successMessage.style.display = "block";
+            successText.innerText = `Welcome, ${name}!`;
+        }
 
-        // 3. Auto-close modal after 2 seconds
+        // 4. THE FIX: Clear the "active" class to hide the modal
+        // We use a 2-second delay so they can actually see the "Thank You"
         setTimeout(() => {
-            leadModal.classList.remove('active');
-        }, 2500);
+            modal.classList.remove('active');
+            // Hard hide after the transition finishes
+            setTimeout(() => { modal.style.display = "none"; }, 500);
+        }, 2000);
     })
     .catch(err => {
         console.error(err);
@@ -364,6 +370,7 @@ document.querySelector('.fab-contact').addEventListener('click', function(e){
 
 </body>
 </html>
+
 
 
 
