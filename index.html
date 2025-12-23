@@ -54,7 +54,7 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
 #leadModal{ position:fixed; inset:0; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:9999; opacity:0; pointer-events:none; transition:opacity .5s ease; }
 #leadModal.active{ opacity:1; pointer-events:auto; }
 .lead-card{ background:linear-gradient(145deg,#ffffff,#e6f0ff); border-radius: 20px 10px; padding:30px; padding-left:2%; padding-right: 4%; width:90%; max-width:380px; text-align:center; box-shadow:0 15px 40px rgba(0,0,0,0.35); transform:translateY(-30px) rotateX(5deg) perspective(600px); transition:transform 0.5s cubic-bezier(.68,-.55,.27,1.55); }
-#leadModal.active .lead-card{ transform:translateY(0) rotateX(0deg); border-radius: 25% 10% ; }
+#leadModal.active .lead-card{ transform:translateY(0) rotateX(0deg); border-radius: 24% 9% ; }
 .lead-header h2{ margin:0; font-size:1.8em; color:#0b457e; text-shadow:0 2px 8px rgba(0,0,0,0.2); }
 .lead-header p{ margin:6px 0 20px; font-size:1em; color:#0c0c0c; }
 .lead-form input{ width:100%; padding:10px; box-sizing: border; margin:10px 0; border-radius:8px; border:1px solid #ccc; font-size:1em; outline:none; transition:0.3s; box-shadow: inset 0 2px 5px rgba(8, 45, 92, 0.05); }
@@ -62,39 +62,63 @@ body { margin:0; font-family:"Poppins",sans-serif; background-color:#f8f9fa; col
 .lead-form button{ width:100%; padding:14px; margin-top:15px; border:none; border-radius:12px; font-size:1.1em; font-weight:600; background:#0b457e; color:#fff; cursor:pointer; box-shadow:0 6px 14px rgba(0,0,0,0.25),0 0 12px rgba(11,69,126,0.4); transition:transform 0.2s, box-shadow 0.25s, background 0.3s; }
 .lead-form button:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 10px 20px rgba(0,0,0,0.3),0 0 18px rgba(11,69,126,0.6); background:#09325b; }
 
-/* Mobile Optimization for Lead Modal */
+/* Mobile Optimization with Custom Shape */
 @media (max-width: 480px) {
     .lead-card {
-        padding: 20px; /* Reduced from 30px */
-        width: 85%;    /* Slightly narrower */
-        border-radius: 15px; /* Simpler, cleaner corners for small screens */
+        padding: 20px;
+        width: 85%;
+        /* Your specific custom shape */
+        border-radius: 25% 10% !important; 
     }
 
     #leadModal.active .lead-card {
-        border-radius: 15px; /* Keep consistent on active state */
+        /* Ensuring the shape stays during the active state */
+        border-radius: 25% 10% !important; 
     }
 
     .lead-header h2 {
-        font-size: 1.4em; /* Smaller heading */
+        font-size: 1.3em;
+        margin-bottom: 5px;
     }
 
     .lead-header p {
-        font-size: 0.9em; /* Smaller sub-text */
-        margin-bottom: 15px;
+        font-size: 0.85em;
+        margin-bottom: 12px;
     }
 
-    .lead-form input {
-        padding: 10px; /* Slimmer input fields */
+    /* Fixing the text box lengths for mobile */
+    .lead-form input, 
+    #countryCode {
+        height: 42px; /* Slightly shorter for mobile to save space */
+        padding: 8px 10px;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    .input-group {
+        display: flex;
+        gap: 6px;
+        width: 100%;
         margin: 6px 0;
-        font-size: 0.95em;
+    }
+
+    #countryCode {
+        width: 35% !important;
+        flex-shrink: 0;
+    }
+
+    #leadMobile {
+        width: 65% !important;
+        margin: 0 !important; /* Removes extra vertical space in the group */
     }
 
     .lead-form button {
-        padding: 12px; /* Slimmer button */
+        padding: 12px;
         margin-top: 10px;
         font-size: 1em;
+        border-radius: 10px;
     }
-    
+}
     #successMessage {
         padding: 10px !important;
     }
